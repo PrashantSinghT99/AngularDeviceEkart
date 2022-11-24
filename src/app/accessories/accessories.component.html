@@ -1,0 +1,15 @@
+<div class="row">
+    <div class="col-xs-10">
+        <app-accessory-edit> </app-accessory-edit>
+
+        <hr>
+
+        <ul class="list-group">
+            <a class="list-group-item" style="cursor: pointer" *ngFor="let accessory of accessories;let i=index"
+            (click)="onEdititem(i)"   
+           >
+                {{ accessory.name }} ({{ accessory.quantity }})
+            </a>
+        </ul>
+    </div>
+</div>
