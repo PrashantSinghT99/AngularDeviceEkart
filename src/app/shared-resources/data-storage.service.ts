@@ -1,16 +1,18 @@
-import { HttpClient, HttpClientModule } from "@angular/common/http";
+import { HttpClient, HttpClientModule, HttpParams } from "@angular/common/http";
 import { Device } from "../devices/device.model";
 import { Injectable } from '@angular/core';
 
 import { DeviceService } from "../devices/device.service";
-import { map, tap } from "rxjs";
+import { map, take, tap,exhaustMap } from "rxjs";
+import { AuthService } from "../authentication/auth.service";
 
 @Injectable({
     providedIn: 'root'
 })
 export class DatastorageService {
     constructor(private http: HttpClient,
-        private deviceService: DeviceService) { }
+        private deviceService: DeviceService,
+        private authService:AuthService) { }
 
     storeDevices() {
         
@@ -28,8 +30,7 @@ export class DatastorageService {
     fetchDevices() {
         return this.http.get<Device[]>(
             'https://myangularapp-60be6-default-rtdb.firebaseio.com/devices.json').
-
-            pipe(
+             pipe(
                 map(devices => {
                     return devices.map(device => {
                         return { ...device, accessories: device.accessories ? device.accessories : [] };
@@ -37,5 +38,11 @@ export class DatastorageService {
                 }), tap(devices => {
                     this.deviceService.setDevices(devices);
                 }))
-    }
-}
+
+            }
+        }
+        
+        
+        
+//it waits for first oberservable(user obs) to complete and gives us the user unsubscribe that and automaticaly replace it with new observable
+ //exhaustmap because we cant return from subscribe

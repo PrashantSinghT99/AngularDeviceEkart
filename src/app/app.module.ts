@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NavigationComponent } from './navigation/navigation.component';
 import { DropdownDirective } from './shared-resources/dropdown.directive';
@@ -15,8 +15,10 @@ import { DeviceListComponent } from './devices/device-list/device-list.component
 import { DeviceStartComponent } from './devices/device-start/device-start.component';
 import { DeviceDetailComponent } from './devices/device-detail/device-detail.component';
 import { DeviceEditComponent } from './devices/device-edit/device-edit.component';
-import { DatastorageService } from './shared-resources/data-storage.service';
 import { DevicesComponent } from './devices/devices.component';
+import { AuthComponent } from './authentication/auth.component';
+import { LoaderComponent } from './shared-resources/loader/loader.component';
+import { AuthInterceptorService } from './authentication/auth-interceptor.service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -30,6 +32,8 @@ import { DevicesComponent } from './devices/devices.component';
     DeviceStartComponent,
     DeviceDetailComponent,
     DeviceEditComponent,
+    AuthComponent,
+    LoaderComponent
   ],
   imports: [
     BrowserModule,
@@ -38,7 +42,11 @@ import { DevicesComponent } from './devices/devices.component';
     ReactiveFormsModule,
     HttpClientModule
   ],
-  providers: [AccessoriesService, DeviceService],
+  providers: [AccessoriesService, DeviceService,
+    {provide:HTTP_INTERCEPTORS,
+      useClass:AuthInterceptorService,
+      multi:true
+    }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
