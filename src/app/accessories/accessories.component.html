@@ -1,3 +1,10 @@
+<head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Happy+Monkey&family=Hind&family=Noto+Sans:wght@100&family=Roboto:wght@300&family=Ubuntu:wght@300&display=swap"
+        rel="stylesheet">
+</head>
 <div class="row">
     <div class="col-xs-10">
         <app-accessory-edit> </app-accessory-edit>
@@ -6,8 +13,7 @@
 
         <ul class="list-group">
             <a class="list-group-item" style="cursor: pointer" *ngFor="let accessory of accessories;let i=index"
-            (click)="onEdititem(i)"   
-           >
+                (click)="onEdititem(i)">
                 {{ accessory.name }} ({{ accessory.quantity }})
             </a>
         </ul>

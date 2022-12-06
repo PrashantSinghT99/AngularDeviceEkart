@@ -1,5 +1,4 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { ThisReceiver } from '@angular/compiler';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { BehaviorSubject, catchError, Subject, tap, throwError } from 'rxjs';
@@ -99,22 +98,6 @@ export class AuthService {
       this.autoLogout(expirationDuration);
     }
   }
-  private handleError(errorRes: HttpErrorResponse) {
-    let errorMessage = 'An unknown error occured!';
-    if (!errorRes.error || !errorRes.error.error) {
-      return throwError(errorMessage);
-    }
-    switch (errorRes.error.error.message) {
-      case 'EMAIL_EXISTS':
-        errorMessage = 'This email already exists';
-      case 'EMAIL_NOT_FOUND':
-        errorMessage = 'This email does not exists';
-      case 'INVALID_PASSWORD':
-        errorMessage =
-          'The password is invalid or the user does not have a password';
-    }
-    return throwError(errorMessage);
-  }
 
   logOut() {
     this.user.next(null);
@@ -145,6 +128,26 @@ export class AuthService {
     this.autoLogout(expiresIn * 1000);
 
     localStorage.setItem('userData', JSON.stringify(user));
+  }
+
+  private handleError(errorRes: HttpErrorResponse) {
+    let errorMessage = 'An unknown error occured!';
+    if (!errorRes.error || !errorRes.error.error) {
+      return throwError(errorMessage);
+    }
+    switch (errorRes.error.error.message) {
+      case 'EMAIL_EXISTS':
+        errorMessage = 'This email already exists';
+        break;
+      case 'EMAIL_NOT_FOUND':
+        errorMessage = 'This email does not exists';
+        break;
+      case 'INVALID_PASSWORD':
+        errorMessage =
+          'The password is invalid or the user does not have a password';
+        break;
+    }
+    return throwError(errorMessage);
   }
 }
 

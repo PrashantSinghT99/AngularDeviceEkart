@@ -5,6 +5,7 @@ import { DatastorageService } from '../shared-resources/data-storage.service';
 @Component({
   selector: 'navigation',
   templateUrl: './navigation.component.html',
+  styleUrls: ['./navigation.component.css'],
 })
 export class NavigationComponent implements OnInit, OnDestroy {
   private userSub: Subscription;

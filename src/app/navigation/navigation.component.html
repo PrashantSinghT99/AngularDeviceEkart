@@ -1,48 +1,52 @@
-<nav class="navbar navbar-default">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <a href="#" class="navbar-brand">Device Ekart</a>
-    </div>
+<head>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Happy+Monkey&family=Hind&family=Noto+Sans:wght@100&family=Roboto:wght@300&family=Ubuntu:wght@300&display=swap"
+    rel="stylesheet">
+</head>
 
-    <div class="navbar-default">
-      <ul class="nav navbar-nav">
-        <li routerLinkActive="active">
-          <a routerLink="/devices" *ngIf="isAuthenticated">Devices</a>
-        </li>
-        <li routerLinkActive="active">
-          <a routerLink="/authentication" *ngIf="!isAuthenticated"
-            >Authentication</a
-          >
-        </li>
-        <li routerLinkActive="active">
-          <a routerLink="/accessories">Accessories</a>
-        </li>
-        <li><a *ngIf="isAuthenticated">Buy</a></li>
-        <li><a *ngIf="isAuthenticated">Contact</a></li>
-      </ul>
-      <ul class="nav navbar-nav navbar-right">
-        <li>
-          <a
-            style="cursor: pointer"
-            *ngIf="isAuthenticated"
-            (click)="onLogOut()"
-            >Logout</a
-          >
-        </li>
-        <li class="dropdown" appDropdown *ngIf="isAuthenticated">
-          <a style="cursor: pointer" class="dropdown toggle" role="button"
-            >Manage<span class="caret"></span
-          ></a>
-          <ul class="dropdown-menu">
-            <li>
-              <a style="cursor: pointer" (click)="onSaveData()">Save data</a>
-            </li>
-            <li>
-              <a style="cursor: pointer" (click)="onFetchData()">Fetch data</a>
-            </li>
-          </ul>
-        </li>
-      </ul>
+<body>
+
+
+  <link rel="stylesheet" href="navigation.component.css">
+  <nav class="navbar navbar-default">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a href="#" class="navbar-brand">Device Ekart</a>
+      </div>
+
+      <div class="navbar-default">
+        <ul class="nav navbar-nav">
+          <li routerLinkActive="active">
+            <a routerLink="/devices" *ngIf="isAuthenticated">Devices</a>
+          </li>
+          <li routerLinkActive="active">
+            <a routerLink="/authentication" *ngIf="!isAuthenticated">Authentication</a>
+          </li>
+          <li routerLinkActive="active">
+            <a routerLink="/accessories">Accessories</a>
+          </li>
+          <li><a *ngIf="isAuthenticated">Buy</a></li>
+          <li><a *ngIf="isAuthenticated">Contact</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+          <li>
+            <a style="cursor: pointer" *ngIf="isAuthenticated" (click)="onLogOut()">Logout</a>
+          </li>
+          <li class="dropdown" appDropdown *ngIf="isAuthenticated">
+            <a style="cursor: pointer" class="dropdown toggle" role="button">Manage<span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li>
+                <a style="cursor: pointer" (click)="onSaveData()">Save data</a>
+              </li>
+              <li>
+                <a style="cursor: pointer" (click)="onFetchData()">Fetch data</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
     </div>
-  </div>
-</nav>
+  </nav>
+</body>

@@ -33,20 +33,24 @@ import { AuthInterceptorService } from './authentication/auth-interceptor.servic
     DeviceDetailComponent,
     DeviceEditComponent,
     AuthComponent,
-    LoaderComponent
+    LoaderComponent,
   ],
   imports: [
     BrowserModule,
     FormsModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
   ],
-  providers: [AccessoriesService, DeviceService,
-    {provide:HTTP_INTERCEPTORS,
-      useClass:AuthInterceptorService,
-      multi:true
-    }],
-  bootstrap: [AppComponent]
+  providers: [
+    AccessoriesService,
+    DeviceService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptorService,
+      multi: true,
+    },
+  ],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
