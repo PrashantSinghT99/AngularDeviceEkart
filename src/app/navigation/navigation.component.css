@@ -1,7 +1,25 @@
-a:hover {
-  background-color: yellow;
+body {
+
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 1.7rem;
 }
 
-body {
-  font-family: 'Ubuntu', sans-serif;
+nav.navbar {
+  background-color: #2874f0;
+}
+
+nav.navbar a {
+  color: white;
+  font-weight: 500;
+}
+
+.navbar-default .navbar-nav .open .dropdown-menu>li>a {
+  color: black;
+}
+
+.navbar-default .navbar-nav>.active>a,
+.navbar-default .navbar-nav>.active>a:focus,
+.navbar-default .navbar-nav>.active>a:hover {
+  background-color: rgb(228, 71, 102);
+  color: white;
 }
